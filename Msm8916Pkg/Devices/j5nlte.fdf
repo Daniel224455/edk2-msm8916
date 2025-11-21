@@ -122,6 +122,9 @@ APRIORI DXE {
   INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
   INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
+  # Platform Drivers
+  INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
+
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
@@ -181,6 +184,9 @@ APRIORI DXE {
   INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   
   INF Msm8916Pkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
+
+  # Platform Drivers
+  INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
 
   #
   # USB Host Support

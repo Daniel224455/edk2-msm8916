@@ -237,8 +237,9 @@
   MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
 
   #
-  # GPIO
+  # Platform Drivers
   #
+  Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
 
   #
   # Virtual Keyboard
