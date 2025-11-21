@@ -94,6 +94,21 @@
   PlatformPeiLib|Msm8916Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
 
+  # SoC Drivers
+  GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmImplLib.inf
+
+[LibraryClasses.common.DXE_DRIVER]
+  # SoC Drivers
+  GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+
+[LibraryClasses.common.UEFI_APPLICATION]
+  # SoC Drivers
+  GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+
+[LibraryClasses.common.UEFI_DRIVER]
+  # SoC Drivers
+  GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+
 ################################################################################
 #
 # Pcd Section - list of all EDK II PCD Entries defined by this Platform
@@ -128,6 +143,36 @@
   #
   gArmTokenSpaceGuid.PcdGicDistributorBase|0x0b000000
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase|0x0b002000
+
+  # SoC Drivers GPIO TLMM
+  gQcomTokenSpaceGuid.PcdGpioTlmmBaseAddress|0x1000000
+  gQcomTokenSpaceGuid.PcdGpioTlmmSummaryIrq|240
+  gQcomTokenSpaceGuid.PcdGpioTlmmIoOffset|0x1004
+  gQcomTokenSpaceGuid.PcdGpioTlmmIoElementSize|0x10
+  gQcomTokenSpaceGuid.PcdGpioTlmmCtlOffset|0x1000
+  gQcomTokenSpaceGuid.PcdGpioTlmmCtlElementSize|0x10
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrCfgOffset|0x1008
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrCfgElementSize|0x10
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrStatusOffset|0x100c
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrStatusElementSize|0x10
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrTargetOffset|0x1008
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrTargetElementSize|0x10
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrEnableBit|0
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrStatusBit|0
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrAckHigh|FALSE
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrTargetBit|5
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrTargetKpssValue|4
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrRawStatusBit|4
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrPolarityBit|1
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrDetectionBit|2
+  gQcomTokenSpaceGuid.PcdGpioTlmmIntrDetectionWidth|2
+  gQcomTokenSpaceGuid.PcdGpioTlmmInBit|0
+  gQcomTokenSpaceGuid.PcdGpioTlmmOutBit|1
+  gQcomTokenSpaceGuid.PcdGpioTlmmOeBit|9
+  gQcomTokenSpaceGuid.PcdGpioTlmmMuxBit|2
+  gQcomTokenSpaceGuid.PcdGpioTlmmDrvBit|6
+  gQcomTokenSpaceGuid.PcdGpioTlmmPullBit|0
+  gQcomTokenSpaceGuid.PcdGpioTlmmNumFunctions|12
 
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|0x12
   gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|0x13
@@ -240,6 +285,7 @@
   # Platform Drivers
   #
   Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
+  Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
 
   #
   # Virtual Keyboard

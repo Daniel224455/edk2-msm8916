@@ -124,6 +124,7 @@ APRIORI DXE {
 
   # Platform Drivers
   INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
+  INF Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
 
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
@@ -187,6 +188,7 @@ APRIORI DXE {
 
   # Platform Drivers
   INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
+  INF Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
 
   #
   # USB Host Support
