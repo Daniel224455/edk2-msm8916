@@ -1,0 +1,1 @@
+# EDK II Firmware for the OnePlus 6 platform.
