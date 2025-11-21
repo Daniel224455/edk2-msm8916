@@ -44,9 +44,6 @@
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|1080|UINT32|0x0000a404
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|2160|UINT32|0x0000a405
 
-  # RTC information
-  gMsm8916PkgTokenSpaceGuid.PcdBootShimInfo1|0xb0000000|UINT64|0x00000a601
-
   # Device Info
   gMsm8916PkgTokenSpaceGuid.PcdDeviceVendor|"Samsung"|VOID*|0x0000a301
   gMsm8916PkgTokenSpaceGuid.PcdDeviceProduct|"Galaxy J5 2015"|VOID*|0x0000a302

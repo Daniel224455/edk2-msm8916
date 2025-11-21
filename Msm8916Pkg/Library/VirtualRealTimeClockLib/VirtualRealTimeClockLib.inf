@@ -38,6 +38,3 @@
   TimerLib
   HobLib
   PcdLib
-
-[FixedPcd]
-  gMsm8916PkgTokenSpaceGuid.PcdBootShimInfo1
