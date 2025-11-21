@@ -21,12 +21,42 @@
 #include <Ppi/SecPerformance.h>
 
 #include "PrePi.h"
+#include "MDPRegs.h"
 
 #define IS_XIP()  (((UINT64)FixedPcdGet64 (PcdFdBaseAddress) > mSystemMemoryEnd) ||\
                   ((FixedPcdGet64 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) <= FixedPcdGet64 (PcdSystemMemoryBase)))
 
 UINT64  mSystemMemoryEnd = FixedPcdGet64 (PcdSystemMemoryBase) +
                            FixedPcdGet64 (PcdSystemMemorySize) - 1;
+
+UINTN Width = FixedPcdGet32(PcdMipiFrameBufferWidth);
+UINTN Height = FixedPcdGet32(PcdMipiFrameBufferHeight);
+UINTN Bpp = FixedPcdGet32(PcdMipiFrameBufferPixelBpp);
+UINTN FbAddr = FixedPcdGet32(PcdMipiFrameBufferAddress);
+
+VOID
+PaintScreen(
+  IN  UINTN   BgColor
+)
+{
+  // Code from FramebufferSerialPortLib
+	char* Pixels = (void*)FbAddr;
+
+	// Set color.
+	for (UINTN i = 0; i < Width; i++)
+	{
+		for (UINTN j = 0; j < Height; j++)
+		{
+			// Set pixel bit
+			for (UINTN p = 0; p < (Bpp / 8); p++)
+			{
+				*Pixels = (unsigned char)BgColor;
+				BgColor = BgColor >> 8;
+				Pixels++;
+			}
+		}
+	}
+}
 
 EFI_STATUS
 GetPlatformPpi (
@@ -50,16 +80,6 @@ GetPlatformPpi (
   }
 
   return EFI_NOT_FOUND;
-}
-
-void setFBcolor(UINT8 b, UINT8 g, UINT8 r) {
-    UINT8* base = (UINT8*)0x83200000;  // framebuffer base
-    for (int i = 0; i < 0xC00000; i += 4) {
-        base[i]     = b;     // Blue
-        base[i + 1] = g;     // Green
-        base[i + 2] = r;     // Red
-        base[i + 3] = 0xFF;  // Alpha
-    }
 }
 
 VOID
@@ -86,6 +106,15 @@ PrePiMain (
      ((UINT64)(FixedPcdGet64 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) <= (UINT64)mSystemMemoryEnd))
     );
 
+  // Flush FrameBuffer
+  PaintScreen(0);
+
+  /* Switch to 32bpp argb8888 */
+  MmioWrite32(PIPE_BASE + PIPE_SSPP_SRC_FORMAT, 0x000236FF);
+  MmioWrite32(PIPE_BASE + PIPE_SSPP_SRC_UNPACK_PATTERN, 0x03020001);
+  MmioWrite32(PIPE_BASE + PIPE_SSPP_SRC_YSTRIDE, 720 * 4);
+  MmioWrite32(MDP_CTL_0_BASE + CTL_FLUSH, (1 << (3)));
+
   // Initialize the architecture specific bits
   ArchInitialize ();
 
@@ -105,7 +134,6 @@ PrePiMain (
   InitializeDebugAgent (DEBUG_AGENT_INIT_POSTMEM_SEC, NULL, NULL);
   SaveAndSetDebugTimerInterrupt (TRUE);
 
-    DEBUG((EFI_D_WARN, "hi 1\n"));
   // Declare the PI/UEFI memory region
   HobList = HobConstructor (
               (VOID *)UefiMemoryBase,
@@ -114,11 +142,11 @@ PrePiMain (
               (VOID *)StacksBase // The top of the UEFI Memory is reserved for the stacks
               );
   PrePeiSetHobList (HobList);
-    DEBUG((EFI_D_WARN, "hi 2\n"));
+
   // Initialize MMU and Memory HOBs (Resource Descriptor HOBs)
   Status = MemoryPeim (UefiMemoryBase, FixedPcdGet32 (PcdSystemMemoryUefiRegionSize));
   ASSERT_EFI_ERROR (Status);
-    DEBUG((EFI_D_WARN, "hi 3\n"));
+
   // Create the Stacks HOB (reserve the memory for all stacks)
   if (ArmIsMpCore ()) {
     StacksSize = PcdGet32 (PcdCPUCorePrimaryStackSize) +
@@ -128,6 +156,14 @@ PrePiMain (
   }
 
   BuildStackHob (StacksBase, StacksSize);
+
+  // Initialize QGIC
+  Status = QGicPeim();
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
+    CpuDeadLoop();
+  }
 
   // TODO: Call CpuPei as a library
   BuildCpuHob (ArmGetPhysicalAddressBits (), PcdGet8 (PcdPrePiCpuIoSize));

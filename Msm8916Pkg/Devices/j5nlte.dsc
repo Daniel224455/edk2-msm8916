@@ -19,7 +19,7 @@
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1280
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x83200000
-  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|24
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|720
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|1280
 

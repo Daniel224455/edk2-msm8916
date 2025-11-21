@@ -19,6 +19,7 @@
   PrePi.h
   PrePi.c
   MainUniCore.c
+  EarlyQGic/EarlyQGic.c
 
 [Sources.ARM]
   Arm/ArchPrePi.c
@@ -34,7 +35,8 @@
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-
+  Msm8916Pkg/Msm8916Pkg.dec
+  
 [LibraryClasses]
   BaseLib
   CacheMaintenanceLib
@@ -97,6 +99,11 @@
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData
+
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp  
 
 [Pcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
