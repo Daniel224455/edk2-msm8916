@@ -1,1 +1,1 @@
-# EDK II Firmware for the OnePlus 6 platform.
+# EDK II Firmware for MSM8916 (internally known as Bagheera) platforms.
