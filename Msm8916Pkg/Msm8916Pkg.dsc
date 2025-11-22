@@ -37,6 +37,7 @@
 
   # SoC Drivers
   InterruptsLib|Msm8916Pkg/Library/InterruptsLib/InterruptsLib.inf
+  MallocLib|Msm8916Pkg/Library/MallocLib/MallocLib.inf
 
   # UiApp dependencies
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
@@ -177,6 +178,9 @@
   gQcomTokenSpaceGuid.PcdGpioTlmmPullBit|0
   gQcomTokenSpaceGuid.PcdGpioTlmmNumFunctions|12
 
+  # SoC Drivers SPMI
+  gQcomTokenSpaceGuid.PcdSpmiBaseAddress|0x02000000
+
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|0x12
   gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|0x13
 
@@ -290,6 +294,7 @@
   Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
   Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
   Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
+  Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
 
   #
   # Virtual Keyboard

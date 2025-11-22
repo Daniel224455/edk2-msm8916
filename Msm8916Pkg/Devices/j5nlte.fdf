@@ -126,6 +126,7 @@ APRIORI DXE {
   INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
   INF Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
   INF Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
+  INF Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
 
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
@@ -191,6 +192,7 @@ APRIORI DXE {
   INF Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
   INF Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
   INF Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
+  INF Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
 
   #
   # USB Host Support
