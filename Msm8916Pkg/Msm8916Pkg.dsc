@@ -38,6 +38,8 @@
   # SoC Drivers
   InterruptsLib|Msm8916Pkg/Library/InterruptsLib/InterruptsLib.inf
   MallocLib|Msm8916Pkg/Library/MallocLib/MallocLib.inf
+  KeypadDeviceHelperLib|Msm8916Pkg/Library/KeypadDeviceHelperLib/KeypadDeviceHelperLib.inf
+  KeypadDeviceImplLib|Msm8916Pkg/Library/KeypadDeviceImplLib/KeypadDeviceImplLib.inf
 
   # UiApp dependencies
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
@@ -304,7 +306,9 @@
   Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
   Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
   Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
-
+  Msm8916Pkg/Drivers/GenericKeypadDeviceDxe/GenericKeypadDeviceDxe.inf
+  Msm8916Pkg/Drivers/KeypadDxe/KeypadDxe.inf
+  
   #
   # Virtual Keyboard
   #

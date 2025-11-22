@@ -506,8 +506,8 @@ VOID EFIAPI PlatformBootManagerBeforeConsole(VOID)
   UINTN                     NoHandles;
   EFI_DEVICE_PATH_PROTOCOL *devicehandle;
   /*CHAR16 *devicepathtxt;*/
-  // EfiBootManagerUpdateConsoleVariable(ConIn,
-  //  (EFI_DEVICE_PATH_PROTOCOL*)&gQcomKeypadDeviceGuid, NULL);
+   EfiBootManagerUpdateConsoleVariable(ConIn,
+    (EFI_DEVICE_PATH_PROTOCOL*)&gEFIDroidKeypadDeviceProtocolGuid, NULL);
   gBS->LocateHandleBuffer(
       ByProtocol, &gEfiSimpleTextInputExProtocolGuid, NULL, &NoHandles,
       &handles);
