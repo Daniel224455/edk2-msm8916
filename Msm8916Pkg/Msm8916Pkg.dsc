@@ -382,7 +382,7 @@
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-  # Msm8916Pkg/AcpiTables/AcpiTables.inf
+  Msm8916Pkg/AcpiTables/AcpiTables.inf
 
   #
   # FDT support

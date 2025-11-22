@@ -226,22 +226,7 @@ APRIORI DXE {
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-  # INF RuleOverride = ACPITABLE Msm8916Pkg/AcpiTables/AcpiTables.inf
-
-  #FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {   
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/j5nlte/DSDT.aml
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Csrt.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/dbg2.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Facp.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Facs.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Gtdt.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/IORT.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Madt.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Mcfg.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/Pptt.acpi
-  #  SECTION RAW = Msm8916Pkg/AcpiTables/8916/TPM2.acpi
-  #  SECTION UI = "AcpiTables"
-  #}
+  INF RuleOverride = ACPITABLE Msm8916Pkg/AcpiTables/AcpiTables.inf
 
   #
   # SMBIOS Support

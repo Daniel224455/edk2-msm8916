@@ -12,13 +12,13 @@
 !include Msm8916Pkg/Msm8916Pkg.dsc
 
 [BuildOptions.common]
-  GCC:*_*_AARCH64_CC_FLAGS = -DFORCE_EMMC
+  GCC:*_*_AARCH64_CC_FLAGS =
 
 [PcdsFixedAtBuild.common]
   # Simple FrameBuffer
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferWidth|720
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1280
-  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x83200000
+  gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x8e000000
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|720
   gMsm8916PkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|1280

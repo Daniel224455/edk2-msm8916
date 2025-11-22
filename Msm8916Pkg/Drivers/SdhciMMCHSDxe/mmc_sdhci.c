@@ -1296,7 +1296,9 @@ static uint32_t mmc_sd_get_card_ssr(struct sdhci_host *host, struct mmc_card *ca
 		return 1;
 	}
 
-	raw_sd_status = memalign(CACHE_LINE, ROUNDUP(64, CACHE_LINE));
+	raw_sd_status = (uint8_t *)AllocateAlignedPages(
+		EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)),
+		CACHE_LINE);
 
 	cmd.cmd_index = ACMD13_SEND_SD_STATUS;
 	cmd.argument = 0x0;
@@ -1310,7 +1312,7 @@ static uint32_t mmc_sd_get_card_ssr(struct sdhci_host *host, struct mmc_card *ca
 
 	/* send command */
 	if (sdhci_send_command(host, &cmd)) {
-		free(raw_sd_status);
+		FreePages(raw_sd_status, EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)));
 		return 1;
 	}
 
@@ -1324,7 +1326,7 @@ static uint32_t mmc_sd_get_card_ssr(struct sdhci_host *host, struct mmc_card *ca
 	card->ssr.au_size = 1 << (au_size + 4);
 	card->ssr.num_aus = UNPACK_BITS(status, MMC_SD_ERASE_SIZE_BIT, MMC_SD_ERASE_SIZE_LEN, 32);
 
-	free(raw_sd_status);
+	FreePages(raw_sd_status, EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)));
 
 	return 0;
 }
@@ -1346,7 +1348,9 @@ static uint32_t mmc_sd_get_card_scr(struct sdhci_host *host, struct mmc_card *ca
 		return 1;
 	}
 
-	scr_resp = memalign(CACHE_LINE, ROUNDUP(8, CACHE_LINE));
+	scr_resp = (uint8_t *)AllocateAlignedPages(
+		EFI_SIZE_TO_PAGES(ROUNDUP(8, CACHE_LINE)),
+		CACHE_LINE);
 
 	cmd.cmd_index = ACMD51_READ_CARD_SCR;
 	cmd.argument = 0x0;
@@ -1360,7 +1364,7 @@ static uint32_t mmc_sd_get_card_scr(struct sdhci_host *host, struct mmc_card *ca
 
 	/* send command */
 	if (sdhci_send_command(host, &cmd)) {
-		free(scr_resp);
+		FreePages(scr_resp, EFI_SIZE_TO_PAGES(ROUNDUP(8, CACHE_LINE)));
 		return 1;
 	}
 
@@ -1377,7 +1381,7 @@ static uint32_t mmc_sd_get_card_scr(struct sdhci_host *host, struct mmc_card *ca
 	card->scr.sd_spec = (card->raw_scr[0] & SD_SCR_SD_SPEC_MASK) >> SD_SCR_SD_SPEC;
 	card->scr.sd3_spec = (card->raw_scr[0] & SD_SCR_SD_SPEC3_MASK) >> SD_SCR_SD_SPEC3;
 
-	free(scr_resp);
+	FreePages(scr_resp, EFI_SIZE_TO_PAGES(ROUNDUP(8, CACHE_LINE)));
 
 	return 0;
 }
@@ -1416,7 +1420,9 @@ uint32_t mmc_sd_set_hs(struct sdhci_host *host, struct mmc_card *card)
        struct mmc_command cmd = {0};
        void *switch_resp;
 
-       switch_resp = memalign(CACHE_LINE, ROUNDUP(64, CACHE_LINE));
+	   switch_resp = (uint8_t *)AllocateAlignedPages(
+	   	    EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)),
+	   	    CACHE_LINE);
 
        cmd.cmd_index = CMD6_SWITCH_FUNC;
        cmd.argument = MMC_SD_SWITCH_HS;
@@ -1430,14 +1436,14 @@ uint32_t mmc_sd_set_hs(struct sdhci_host *host, struct mmc_card *card)
 
        /* send command */
        if (sdhci_send_command(host, &cmd)) {
-             free(switch_resp);
+             FreePages(switch_resp, EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)));
              return 1;
        }
 
 	/* Set the SDR25 mode in controller*/
 	sdhci_set_uhs_mode(host, SDHCI_SDR25_MODE);
 
-	free(switch_resp);
+	FreePages(switch_resp, EFI_SIZE_TO_PAGES(ROUNDUP(64, CACHE_LINE)));
 
 	return 0;
 }
