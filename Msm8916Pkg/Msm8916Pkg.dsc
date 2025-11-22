@@ -41,6 +41,12 @@
   KeypadDeviceHelperLib|Msm8916Pkg/Library/KeypadDeviceHelperLib/KeypadDeviceHelperLib.inf
   KeypadDeviceImplLib|Msm8916Pkg/Library/KeypadDeviceImplLib/KeypadDeviceImplLib.inf
   QcomPlatformClockInitLib|Msm8916Pkg/Library/QcomPlatformClockInitLib/QcomPlatformClockInitLib.inf
+  QcomPlatformMmcLib|Msm8916Pkg/Library/PlatformMmcLib/QcomPlatformMmcLib.inf
+  QcomPlatformMmcClockOverrideLib|Msm8916Pkg/Library/QcomPlatformMmcClockOverrideLib/QcomPlatformMmcClockOverrideLib.inf
+  QcomTargetMmcSdhciLib|Msm8916Pkg/Library/TargetMmcSdhciLib/QcomTargetMmcSdhciLib.inf
+  MicroLibC|Msm8916Pkg/Library/MicroLibC/MicroLibC.inf
+  LcmLib|Msm8916Pkg/Library/LcmLib/LcmLib.inf
+  StrLib|Msm8916Pkg/Library/StrLib/StrLib.inf
 
   # UiApp dependencies
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
@@ -106,7 +112,8 @@
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41ImplLib.inf
   ClockLib|Msm8916Pkg/Drivers/ClockDxe/ClockImplLib.inf
-
+  QcomPlatformClockInitLib|Msm8916Pkg/Library/QcomPlatformClockInitLib/QcomPlatformClockInitLib.inf
+  
 [LibraryClasses.common.DXE_DRIVER]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
@@ -195,6 +202,19 @@
 
   # SoC Drivers SPMI
   gQcomTokenSpaceGuid.PcdSpmiBaseAddress|0x02000000
+
+  # SoC Drivers MMC
+  gQcomTokenSpaceGuid.PcdSdccMciHcMode|0x00000078
+  gQcomTokenSpaceGuid.PcdSdccHcPwrctlStatusReg|0x000000DC
+  gQcomTokenSpaceGuid.PcdSdccHcPwrctlMaskReg|0x000000E0
+  gQcomTokenSpaceGuid.PcdSdccHcPwrctlClearReg|0x000000E4
+  gQcomTokenSpaceGuid.PcdSdccHcPwrctlCtlReg|0x000000E8
+  gQcomTokenSpaceGuid.PcdMmcSdhciDdrCfgVal|0x80040870 # DDR_CFG_DLY_VAL Not using here
+  gQcomTokenSpaceGuid.PcdMmcSdc1HdrvPullCtlOffset|0x00002044
+  gQcomTokenSpaceGuid.PcdMmcSdc2HdrvPullCtlOffset|0x00002048
+
+  # SoC Drivers Misc
+  gQcomTokenSpaceGuid.PcdGicSpiStart|32
 
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|0x12
   gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|0x13
@@ -314,7 +334,8 @@
   Msm8916Pkg/Drivers/GenericKeypadDeviceDxe/GenericKeypadDeviceDxe.inf
   Msm8916Pkg/Drivers/KeypadDxe/KeypadDxe.inf
   Msm8916Pkg/Drivers/ClockDxe/ClockDxe.inf
-  
+  Msm8916Pkg/Drivers/SdhciMMCHSDxe/SdhciMMCHS.inf
+
   #
   # Virtual Keyboard
   #

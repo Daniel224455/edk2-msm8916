@@ -135,7 +135,7 @@ APRIORI DXE {
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
-  # emmc goes here later
+  INF Msm8916Pkg/Drivers/SdhciMMCHSDxe/SdhciMMCHS.inf
 
   INF FatPkg/EnhancedFatDxe/Fat.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
@@ -199,6 +199,7 @@ APRIORI DXE {
   INF Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
   INF Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
   INF Msm8916Pkg/Drivers/ClockDxe/ClockDxe.inf
+  INF Msm8916Pkg/Drivers/SdhciMMCHSDxe/SdhciMMCHS.inf
 
   #
   # USB Host Support
