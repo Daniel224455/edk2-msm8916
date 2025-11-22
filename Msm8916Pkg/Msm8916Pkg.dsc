@@ -40,6 +40,7 @@
   MallocLib|Msm8916Pkg/Library/MallocLib/MallocLib.inf
   KeypadDeviceHelperLib|Msm8916Pkg/Library/KeypadDeviceHelperLib/KeypadDeviceHelperLib.inf
   KeypadDeviceImplLib|Msm8916Pkg/Library/KeypadDeviceImplLib/KeypadDeviceImplLib.inf
+  QcomPlatformClockInitLib|Msm8916Pkg/Library/QcomPlatformClockInitLib/QcomPlatformClockInitLib.inf
 
   # UiApp dependencies
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
@@ -104,24 +105,28 @@
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmImplLib.inf
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41ImplLib.inf
+  ClockLib|Msm8916Pkg/Drivers/ClockDxe/ClockImplLib.inf
 
 [LibraryClasses.common.DXE_DRIVER]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
+  ClockLib|Msm8916Pkg/Drivers/ClockDxe/ClockImplLib.inf
 
 [LibraryClasses.common.UEFI_APPLICATION]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
+  ClockLib|Msm8916Pkg/Drivers/ClockDxe/ClockImplLib.inf
 
 [LibraryClasses.common.UEFI_DRIVER]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
+  ClockLib|Msm8916Pkg/Drivers/ClockDxe/ClockImplLib.inf
 
 ################################################################################
 #
@@ -308,6 +313,7 @@
   Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
   Msm8916Pkg/Drivers/GenericKeypadDeviceDxe/GenericKeypadDeviceDxe.inf
   Msm8916Pkg/Drivers/KeypadDxe/KeypadDxe.inf
+  Msm8916Pkg/Drivers/ClockDxe/ClockDxe.inf
   
   #
   # Virtual Keyboard

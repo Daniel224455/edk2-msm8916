@@ -130,7 +130,8 @@ APRIORI DXE {
   INF Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
   INF Msm8916Pkg/Drivers/GenericKeypadDeviceDxe/GenericKeypadDeviceDxe.inf
   INF Msm8916Pkg/Drivers/KeypadDxe/KeypadDxe.inf
-  
+  INF Msm8916Pkg/Drivers/ClockDxe/ClockDxe.inf
+
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
@@ -197,6 +198,7 @@ APRIORI DXE {
   INF Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
   INF Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
   INF Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
+  INF Msm8916Pkg/Drivers/ClockDxe/ClockDxe.inf
 
   #
   # USB Host Support
