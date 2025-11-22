@@ -100,18 +100,26 @@
 
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmImplLib.inf
+  SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
+  Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41ImplLib.inf
 
 [LibraryClasses.common.DXE_DRIVER]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+  SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
+  Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
 
 [LibraryClasses.common.UEFI_APPLICATION]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+  SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
+  Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
 
 [LibraryClasses.common.UEFI_DRIVER]
   # SoC Drivers
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
+  SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
+  Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
 
 ################################################################################
 #
@@ -295,6 +303,7 @@
   Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
   Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
   Msm8916Pkg/Drivers/SpmiDxe/SpmiDxe.inf
+  Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Dxe.inf
 
   #
   # Virtual Keyboard
