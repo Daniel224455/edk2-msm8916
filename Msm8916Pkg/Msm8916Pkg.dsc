@@ -36,6 +36,7 @@
   CustomizedDisplayLib|MdeModulePkg/Library/CustomizedDisplayLib/CustomizedDisplayLib.inf
 
   # SoC Drivers
+  QTimerLib|Msm8916Pkg/Library/QTimerLib/QTimerLib.inf
   InterruptsLib|Msm8916Pkg/Library/InterruptsLib/InterruptsLib.inf
   MallocLib|Msm8916Pkg/Library/MallocLib/MallocLib.inf
   KeypadDeviceHelperLib|Msm8916Pkg/Library/KeypadDeviceHelperLib/KeypadDeviceHelperLib.inf
@@ -116,6 +117,7 @@
   
 [LibraryClasses.common.DXE_DRIVER]
   # SoC Drivers
+  QcomDxeTimerLib|Msm8916Pkg/Library/QTimerLib/QcomQTimerDxeTimerLib.inf
   GpioTlmmLib|Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmLib.inf
   SpmiLib|Msm8916Pkg/Drivers/SpmiDxe/SpmiImplLib.inf
   Pm8x41Lib|Msm8916Pkg/Drivers/Pm8x41Dxe/Pm8x41Lib.inf
