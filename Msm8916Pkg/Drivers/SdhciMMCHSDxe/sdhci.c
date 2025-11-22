@@ -547,18 +547,25 @@ err:
  * Return  : Pointer to desc table
  * Flow:   : Prepare the adma table as per the sd spec v 3.0
  */
-static struct desc_entry *sdhci_prep_desc_table(void *data, uint32_t len)
+static struct desc_entry *sdhci_prep_desc_table(void *data, uint32_t len, UINTN *AllocatedPages)
 {
   struct desc_entry *sg_list;
   uint32_t           sg_len = 0;
   uint32_t           remain = 0;
   uint32_t           i;
   uint32_t           table_len = 0;
+  UINTN              alignment;
+
+  alignment = lcm(4, CACHE_LINE);
 
   if (len <= SDHCI_ADMA_DESC_LINE_SZ) {
     /* Allocate only one descriptor */
-    sg_list = (struct desc_entry *)memalign(
-        lcm(4, CACHE_LINE), ROUNDUP(sizeof(struct desc_entry), CACHE_LINE));
+    table_len = ROUNDUP(sizeof(struct desc_entry), CACHE_LINE);
+    *AllocatedPages = EFI_SIZE_TO_PAGES(table_len);
+    
+    sg_list = (struct desc_entry *)AllocateAlignedPages(
+        *AllocatedPages,
+        alignment);
 
     if (!sg_list) {
       dprintf(CRITICAL, "Error allocating memory\n");
@@ -585,9 +592,12 @@ static struct desc_entry *sdhci_prep_desc_table(void *data, uint32_t len)
       sg_len++;
 
     table_len = (sg_len * sizeof(struct desc_entry));
+    table_len = ROUNDUP(table_len, CACHE_LINE);
+    *AllocatedPages = EFI_SIZE_TO_PAGES(table_len);
 
-    sg_list = (struct desc_entry *)memalign(
-        lcm(4, CACHE_LINE), ROUNDUP(table_len, CACHE_LINE));
+    sg_list = (struct desc_entry *)AllocateAlignedPages(
+        *AllocatedPages,
+        alignment);
 
     if (!sg_list) {
       dprintf(CRITICAL, "Error allocating memory\n");
@@ -649,7 +659,7 @@ static struct desc_entry *sdhci_prep_desc_table(void *data, uint32_t len)
  *           3. Write block size & block count register
  */
 static struct desc_entry *
-sdhci_adma_transfer(struct sdhci_host *host, struct mmc_command *cmd)
+sdhci_adma_transfer(struct sdhci_host *host, struct mmc_command *cmd, UINTN *AllocatedPages)
 {
   uint32_t           num_blks = 0;
   uint32_t           sz;
@@ -673,7 +683,7 @@ sdhci_adma_transfer(struct sdhci_host *host, struct mmc_command *cmd)
     sz = num_blks * SDHCI_MMC_BLK_SZ;
 
   /* Prepare adma descriptor table */
-  adma_addr = sdhci_prep_desc_table(data, sz);
+  adma_addr = sdhci_prep_desc_table(data, sz, AllocatedPages);
 
   /* Write adma address to adma register */
   REG_WRITE32(host, (uint32_t)adma_addr, SDHCI_ADM_ADDR_REG);
@@ -710,6 +720,7 @@ uint32_t sdhci_send_command(struct sdhci_host *host, struct mmc_command *cmd)
   uint16_t           present_state;
   uint32_t           flags;
   struct desc_entry *sg_list = NULL;
+  UINTN              sg_pages = 0;
 
   DBG("\n %s: START: cmd:%04d, arg:0x%08x, resp_type:0x%04x, data_present:%d\n",
       __func__, cmd->cmd_index, cmd->argument, cmd->resp_type,
@@ -806,7 +817,7 @@ uint32_t sdhci_send_command(struct sdhci_host *host, struct mmc_command *cmd)
 
   /* Check if data needs to be processed */
   if (cmd->data_present)
-    sg_list = sdhci_adma_transfer(host, cmd);
+    sg_list = sdhci_adma_transfer(host, cmd, &sg_pages);
 
   /* Write the argument 1 */
   REG_WRITE32(host, cmd->argument, SDHCI_ARGUMENT_REG);
@@ -870,8 +881,8 @@ uint32_t sdhci_send_command(struct sdhci_host *host, struct mmc_command *cmd)
       cmd->resp[2], cmd->resp[3]);
 err:
   /* Free the scatter/gather list */
-  if (sg_list)
-    free(sg_list);
+  if (sg_list && sg_pages > 0)
+    FreePages(sg_list, sg_pages);
 
   return ret;
 }

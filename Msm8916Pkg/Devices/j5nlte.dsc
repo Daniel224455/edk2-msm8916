@@ -12,7 +12,7 @@
 !include Msm8916Pkg/Msm8916Pkg.dsc
 
 [BuildOptions.common]
-  GCC:*_*_AARCH64_CC_FLAGS = 
+  GCC:*_*_AARCH64_CC_FLAGS = -DFORCE_EMMC
 
 [PcdsFixedAtBuild.common]
   # Simple FrameBuffer

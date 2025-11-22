@@ -792,7 +792,10 @@ uint32_t sdhci_msm_execute_tuning(
     size         = sizeof(tuning_block_64);
   }
 
-  tuning_data = (uint32_t *)memalign(CACHE_LINE, ROUNDUP(size, CACHE_LINE));
+  tuning_data = (uint32_t *)AllocateAlignedPages(
+    EFI_SIZE_TO_PAGES(ROUNDUP(size, CACHE_LINE)),
+    CACHE_LINE
+  );
 
   ASSERT(tuning_data);
 
@@ -917,7 +920,7 @@ out:
     }
   }
 
-  free(tuning_data);
+  FreePages(tuning_data, EFI_SIZE_TO_PAGES(ROUNDUP(size, CACHE_LINE)));
   /* Tuning done */
   host->tuning_in_progress    = false;
   host->msm_host->tuning_done = true;

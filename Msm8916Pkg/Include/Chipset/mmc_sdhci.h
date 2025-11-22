@@ -89,6 +89,7 @@
 #define MMC_EXT_CSD_RST_N_FUNC                    162
 #define MMC_EXT_MMC_BUS_WIDTH                     183
 #define MMC_EXT_MMC_HS_TIMING                     185
+#define MMC_EXT_CSD_REV                           192
 #define MMC_DEVICE_TYPE                           196
 #define MMC_EXT_MMC_DRV_STRENGTH                  197
 #define MMC_EXT_HC_WP_GRP_SIZE                    221
@@ -102,6 +103,7 @@
 #define MMC_ERASE_TIMEOUT_MULT                    223
 #define MMC_HC_ERASE_GRP_SIZE                     224
 #define MMC_PARTITION_CONFIG                      179
+#define MMC_EXT_CSD_EN_RPMB_REL_WR                166 //emmc 5.1 and above
 
 /* Values for ext csd fields */
 #define MMC_HS_TIMING                             0x1
@@ -119,7 +121,7 @@
 #define RST_N_FUNC_ENABLE                         BIT(0)
 
 /* RPMB Related */
-#define RPMB_PART_MIN_SIZE                        (128 * 2014)
+#define RPMB_PART_MIN_SIZE                        (128 * 1024)
 #define RPMB_SIZE_MULT                            168
 #define REL_WR_SEC_C                              222
 #define PARTITION_ACCESS_MASK                     0x7
@@ -160,6 +162,7 @@
 #define MMC_CLK_48MHZ                             48000000
 #define MMC_CLK_50MHZ                             49152000
 #define MMC_CLK_96MHZ                             96000000
+#define MMC_CLK_171MHZ                            171430000
 #define MMC_CLK_177MHZ                            177770000
 #define MMC_CLK_200MHZ                            200000000
 #define MMC_CLK_192MHZ                            192000000
@@ -312,7 +315,7 @@ struct mmc_card {
 	struct mmc_csd csd;      /* CSD structure */
 	struct mmc_sd_scr scr;   /* SCR structure */
 	struct mmc_sd_ssr ssr;   /* SSR Register */
-	uint32_t slot;  	 /* MSM SDHCI Slot */
+	uint32_t slot;           /* MSM SDHCI Slot */
 };
 
 /* mmc device config data */
