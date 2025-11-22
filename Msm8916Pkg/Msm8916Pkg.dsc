@@ -35,6 +35,9 @@
   PlatformBootManagerLib|ArmPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
   CustomizedDisplayLib|MdeModulePkg/Library/CustomizedDisplayLib/CustomizedDisplayLib.inf
 
+  # SoC Drivers
+  InterruptsLib|Msm8916Pkg/Library/InterruptsLib/InterruptsLib.inf
+
   # UiApp dependencies
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
   FileExplorerLib|MdeModulePkg/Library/FileExplorerLib/FileExplorerLib.inf
@@ -286,6 +289,7 @@
   #
   Msm8916Pkg/Drivers/BamDxe/BamDxe.inf
   Msm8916Pkg/Drivers/GpioTlmmDxe/GpioTlmmDxe.inf
+  Msm8916Pkg/Drivers/GpioTlmmInterruptDxe/GpioTlmmInterruptDxe.inf
 
   #
   # Virtual Keyboard
